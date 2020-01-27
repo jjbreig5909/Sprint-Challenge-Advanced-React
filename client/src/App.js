@@ -15,7 +15,6 @@ class App extends React.Component {
     axios
       .get("http://localhost:5000/api/players")
       .then(result => {
-        console.log(result);
         this.setState({...this.state, players: result.data});
       })
       .catch(err=> console.log("error on get:", err));
@@ -26,13 +25,13 @@ class App extends React.Component {
     return (
     <div className="App">
       <Navbar />
-      <div className="player-data">
+        <div className="player-data" data-testid="player-data">
         {this.state.players.map(player => {
           return (
             <div className="player-card" key={player.id}>
-              <p>{player.name}</p>
-              <p>{player.country}</p>
-              <p>{player.searches}</p>
+              <p>Player: {player.name}</p>
+              <p>Country: {player.country}</p>
+              <p>Number of Searches: {player.searches}</p>
             </div>
           );
         })}
